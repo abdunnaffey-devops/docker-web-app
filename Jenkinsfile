@@ -2,8 +2,12 @@ pipeline {
     agent {
         docker {
             image 'docker:24-cli'
-            args '-v /var/run/docker.sock:/var/run/docker.sock'
+            args '-u root -v /var/run/docker.sock:/var/run/docker.sock'
         }
+    }
+
+    environment {
+        DOCKER_CONFIG = '/tmp/.docker'
     }
 
     stages {
